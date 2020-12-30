@@ -10,10 +10,12 @@ class TabWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isSelected ? selectedTab(context) : tab(context);
+    final ScreenProvider screenProvider = Provider.of<ScreenProvider>(context, listen: false);
+
+    return isSelected ? selectedTab(context, screenProvider) : tab(context, screenProvider);
   }
 
-  Widget selectedTab(BuildContext context) {
+  Widget selectedTab(BuildContext context, ScreenProvider screenProvider) {
     // TODO(Sohee): when too many tabs are opened show as ...
     return Container(
       height: MediaQuery.of(context).size.width * 0.09,
@@ -26,8 +28,9 @@ class TabWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
+                const Padding(
+                  padding: EdgeInsets.only(right: 10.0),
+                  // TODO(Sohee): show different icon by language
                   child: Icon(
                     Icons.ac_unit,
                     color: Colors.white,
@@ -35,24 +38,23 @@ class TabWidget extends StatelessWidget {
                 ),
                 Text(
                   name,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.cancel_outlined,
                   color: Colors.white,
                 ),
-                onPressed: () => closeTab(context))
+                onPressed: () => closeTab(context, screenProvider))
           ],
         ),
       ),
     );
   }
 
-  void closeTab(BuildContext context) {
-    final ScreenProvider screenProvider = Provider.of<ScreenProvider>(context, listen: false);
+  void closeTab(BuildContext context, ScreenProvider screenProvider) {
     screenProvider.openedTab.remove(name);
     if (screenProvider.openedTab.isNotEmpty) {
       screenProvider.selectedTab = screenProvider.openedTab.last;
@@ -61,24 +63,27 @@ class TabWidget extends StatelessWidget {
     }
   }
 
-  Widget tab(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.width * 0.09,
-      width: MediaQuery.of(context).size.width * 0.15,
-      color: Colors.grey[350],
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Icon(
-                Icons.ac_unit,
-                color: Colors.grey,
+  Widget tab(BuildContext context, ScreenProvider screenProvider) {
+    return InkWell(
+      onTap: () => {screenProvider.selectedTab = name},
+      child: Container(
+        height: MediaQuery.of(context).size.width * 0.09,
+        width: MediaQuery.of(context).size.width * 0.15,
+        color: Colors.grey[350],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(right: 8.0),
+                child: Icon(
+                  Icons.ac_unit,
+                  color: Colors.grey,
+                ),
               ),
-            ),
-            Text(name, style: TextStyle(color: Colors.grey))
-          ],
+              Text(name, style: const TextStyle(color: Colors.grey))
+            ],
+          ),
         ),
       ),
     );

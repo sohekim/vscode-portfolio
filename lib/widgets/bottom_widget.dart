@@ -6,6 +6,14 @@ class BottomWidget extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.04,
       color: Colors.green,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // TODO(Sohee): dummy text
+          children: const [Text('Sohee Porfolio'), Text('made in 2021')],
+        ),
+      ),
     );
   }
 }

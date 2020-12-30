@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../screen_provider.dart';
 
-class IntroWidget extends StatelessWidget {
+class NotFoundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenProvider screenProvider = Provider.of<ScreenProvider>(context, listen: false);
@@ -15,7 +15,7 @@ class IntroWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'INTRO CONTAINER',
+              'NOTFOUND CONTAINER',
               style: TextStyle(fontSize: 150),
             ),
             TextButton(
