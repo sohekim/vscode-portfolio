@@ -1,6 +1,6 @@
 # portfolio
 
-A new Flutter project.
+Sohee Kim portfolio using Flutter Web 
 
 ## Getting Started
 
