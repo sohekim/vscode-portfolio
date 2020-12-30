@@ -5,6 +5,8 @@ import 'package:portfolio/widgets/explore/explorer_widget.dart';
 import 'package:portfolio/widgets/menu/menu_widget.dart';
 import 'package:portfolio/widgets/tab/tab_row_widget.dart';
 
+import 'widgets/bottom_widget.dart';
+
 class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
