@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/bottom_widget.dart';
 import 'package:portfolio/widgets/content/intro_widget.dart';
-import 'package:portfolio/widgets/explore/explorer_widget.dart';
+import 'package:portfolio/widgets/explorer/explorer_widget.dart';
 import 'package:portfolio/widgets/menu/menu_widget.dart';
 import 'package:portfolio/widgets/tab/tab_row_widget.dart';
 
