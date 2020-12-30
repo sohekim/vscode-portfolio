@@ -12,17 +12,26 @@ class IntroWidget extends StatelessWidget {
         color: Colors.grey,
         height: MediaQuery.of(context).size.height * 0.91,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextButton(
               child: const Text('tab 1'),
               onPressed: () {
-                screenProvider.selectedTab = 'tab 1';
+                screenProvider.selectedTab = screenProvider.tabData['tab 1'];
+                final _selectedTab = screenProvider.tabData['tab 1'];
+                if (!screenProvider.openedTab.contains(_selectedTab)) {
+                  screenProvider.openedTab.add(_selectedTab);
+                }
               },
             ),
             TextButton(
               child: const Text('tab 2'),
               onPressed: () {
-                screenProvider.selectedTab = 'tab 2';
+                screenProvider.selectedTab = screenProvider.tabData['tab 2'];
+                final _selectedTab = screenProvider.tabData['tab 2'];
+                if (!screenProvider.openedTab.contains(_selectedTab)) {
+                  screenProvider.openedTab.add(_selectedTab);
+                }
               },
             ),
           ],
