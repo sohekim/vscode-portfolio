@@ -25,7 +25,7 @@ class _BodyWidgetState extends State<BodyWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.76,
+      width: calculateWidth(),
       child: Column(children: [TabRowWidget(), getContentWidget()]),
     );
   }
@@ -35,7 +35,7 @@ class _BodyWidgetState extends State<BodyWidget> {
     switch (selectedTab) {
       case 'moim.dart':
         {
-          return MoimWidget();
+          return IntroWidget();
         }
         break;
       case 'main.dart':
@@ -45,14 +45,25 @@ class _BodyWidgetState extends State<BodyWidget> {
         break;
       case 'bridge.kt':
         {
-          return BridgeWidget();
+          return IntroWidget();
         }
         break;
       default:
         {
-          return NotFoundWidget();
+          return IntroWidget();
         }
         break;
+    }
+  }
+
+  double calculateWidth() {
+    final double width = MediaQuery.of(context).size.width;
+    if (width > 900) {
+      return width * 0.76;
+    } else if (width > 700) {
+      return width * 0.8;
+    } else {
+      return width;
     }
   }
 }
