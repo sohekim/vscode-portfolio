@@ -58,9 +58,9 @@ class _BodyWidgetState extends State<BodyWidget> {
 
   double calculateWidth() {
     final double width = MediaQuery.of(context).size.width;
-    if (width > 900) {
+    if (width > 1000) {
       return width * 0.76;
-    } else if (width > 700) {
+    } else if (width > 900) {
       return width * 0.8;
     } else {
       return width;

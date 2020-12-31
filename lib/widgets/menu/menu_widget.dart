@@ -4,7 +4,7 @@ class MenuWidget extends StatelessWidget {
   // TODO(Sohee): if more functionalities are needed, use tabBar and put it in a RotatedBox
   @override
   Widget build(BuildContext context) {
-    final bool isLargeScreen = MediaQuery.of(context).size.width > 900;
+    final bool isLargeScreen = MediaQuery.of(context).size.width > 1000;
     return isLargeScreen
         ? Container(
             color: Colors.blue,

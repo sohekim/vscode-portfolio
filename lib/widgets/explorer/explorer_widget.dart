@@ -19,7 +19,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLargeScreen = MediaQuery.of(context).size.width > 700;
+    final bool isLargeScreen = MediaQuery.of(context).size.width > 900;
 
     return isLargeScreen
         ? Container(
@@ -72,6 +72,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
   }
 
   Widget tileItem(IconData iconData, String title) {
+    print(MediaQuery.of(context).size.width);
     final bool isOpened = title == screenProvider.selectedTab;
     return InkWell(
       onTap: () {
