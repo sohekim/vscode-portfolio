@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class ScreenProvider with ChangeNotifier {
   String _selectedMenu = 'file';
-  String _selectedTab = 'main';
-  List<String> openedTab = ['main'];
+  String _selectedTab = 'main.dart';
+  List<String> openedTab = ['main.dart'];
 
-  final Map<String, String> tabData = {'main': 'main', 'tab 1': 'moim.dart', 'tab 2': 'bridge.kt'};
+  final Map<String, String> tabData = {'main': 'main.dart', 'tab 1': 'moim.dart', 'tab 2': 'bridge.kt'};
 
   set selectedTab(String newTab) {
     _selectedTab = newTab;
