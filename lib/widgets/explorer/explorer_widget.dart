@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../screen_provider.dart';
 
 class ExplorerWidget extends StatefulWidget {
   @override
@@ -6,6 +9,14 @@ class ExplorerWidget extends StatefulWidget {
 }
 
 class _ExplorerWidgetState extends State<ExplorerWidget> {
+  ScreenProvider screenProvider;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    screenProvider = Provider.of<ScreenProvider>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,20 +24,88 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
       width: MediaQuery.of(context).size.width * 0.2,
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [Text('EXPLORER'), Icon(Icons.more_horiz)],
+            children: const [
+              Text(
+                'EXPLORER',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Icon(Icons.more_horiz)
+            ],
           ),
         ),
-        // TODO(Sohee): Add expand list
-        const Text('Portfolio'),
-        const Text('Intern'),
-        const Text('PurpleLabs'),
-        const Text('Project Folder'),
-        const Text('Project 1'),
-        const Text('Project 2')
+        ExpansionTile(
+            title: const Text(
+              'PORTFOLIO',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
+            childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+            initiallyExpanded: true,
+            children: <Widget>[
+              // ExpansionTile(
+              //     title: titleItem(Icons.folder_outlined, 'Experience'),
+              //     tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
+              //     childrenPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+              //     children: <Widget>[
+              //       tileItem(Icons.ac_unit, 'purpleLabs.intern'),
+              //       tileItem(Icons.ac_unit, 'DataStructure.TA')
+              //     ]),
+              ExpansionTile(
+                  title: titleItem(Icons.folder_outlined, 'Projects'),
+                  tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  childrenPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  children: <Widget>[tileItem(Icons.ac_unit, 'moim.dart'), tileItem(Icons.ac_unit, 'bridge.kt')]),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: tileItem(Icons.ac_unit, 'main.dart'),
+              ),
+            ]),
       ]),
     );
+  }
+
+  Widget tileItem(IconData iconData, String title) {
+    final bool isOpened = title == screenProvider.selectedTab;
+    return InkWell(
+      onTap: () {
+        screenProvider.selectedTab = title;
+        final _selectedTab = title;
+        if (!screenProvider.openedTab.contains(_selectedTab)) {
+          screenProvider.openedTab.add(_selectedTab);
+        }
+      },
+      child: Row(children: [
+        Icon(
+          iconData,
+          color: isOpened ? Colors.green : Colors.black,
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 10, 0, 10),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: isOpened ? Colors.green[900] : Colors.black,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget titleItem(IconData iconData, String title) {
+    return Row(children: [
+      Icon(iconData),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(8, 10, 0, 10),
+        child: Text(
+          title,
+          style: const TextStyle(color: Colors.black, fontSize: 14),
+        ),
+      ),
+    ]);
   }
 }
