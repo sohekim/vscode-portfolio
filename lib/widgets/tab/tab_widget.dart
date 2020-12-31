@@ -15,43 +15,59 @@ class TabWidget extends StatelessWidget {
     return isSelected ? selectedTab(context, screenProvider) : tab(context, screenProvider);
   }
 
-  Widget selectedTab(BuildContext context, ScreenProvider screenProvider) {
-    // TODO(Sohee): when too many tabs are opened show as ...
+  Widget iconTab(double height, IconData iconData, Color bgColor, Color iconColor) {
     return Container(
-      height: MediaQuery.of(context).size.width * 0.09,
-      width: MediaQuery.of(context).size.width * 0.15,
-      color: Colors.grey[900],
+      height: height,
+      color: bgColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 10.0),
-                  // TODO(Sohee): show different icon by language
-                  child: Icon(
-                    Icons.ac_unit,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  name,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-            IconButton(
-                icon: const Icon(
-                  Icons.cancel_outlined,
-                  color: Colors.white,
-                ),
-                onPressed: () => closeTab(context, screenProvider))
-          ],
+        child: Icon(
+          iconData,
+          color: iconColor,
         ),
       ),
     );
+  }
+
+  Widget selectedTab(BuildContext context, ScreenProvider screenProvider) {
+    final Size size = MediaQuery.of(context).size;
+    return size.width < 1100
+        ? iconTab(size.height, Icons.ac_unit, Colors.black, Colors.white)
+        : Container(
+            height: size.width * 0.09,
+            width: size.width * 0.15,
+            color: Colors.grey[900],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 10.0),
+                        // TODO(Sohee): show different icon by language
+                        child: Icon(
+                          Icons.ac_unit,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        name,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                      icon: const Icon(
+                        Icons.cancel_outlined,
+                        color: Colors.white,
+                      ),
+                      onPressed: () => closeTab(context, screenProvider))
+                ],
+              ),
+            ),
+          );
   }
 
   void closeTab(BuildContext context, ScreenProvider screenProvider) {
@@ -64,28 +80,31 @@ class TabWidget extends StatelessWidget {
   }
 
   Widget tab(BuildContext context, ScreenProvider screenProvider) {
+    final Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () => {screenProvider.selectedTab = name},
-      child: Container(
-        height: MediaQuery.of(context).size.width * 0.09,
-        width: MediaQuery.of(context).size.width * 0.15,
-        color: Colors.grey[350],
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 8.0),
-                child: Icon(
-                  Icons.ac_unit,
-                  color: Colors.grey,
+      child: size.width < 1100
+          ? iconTab(size.height, Icons.ac_unit, Colors.grey[350], Colors.grey)
+          : Container(
+              height: size.width * 0.09,
+              width: size.width * 0.15,
+              color: Colors.grey[350],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: Icon(
+                        Icons.ac_unit,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Text(name, style: const TextStyle(color: Colors.grey))
+                  ],
                 ),
               ),
-              Text(name, style: const TextStyle(color: Colors.grey))
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
