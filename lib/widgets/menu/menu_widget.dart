@@ -4,19 +4,22 @@ class MenuWidget extends StatelessWidget {
   // TODO(Sohee): if more functionalities are needed, use tabBar and put it in a RotatedBox
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      width: MediaQuery.of(context).size.width * 0.04,
-      child: Column(children: [
-        Container(
+    final bool isLargeScreen = MediaQuery.of(context).size.width > 900;
+    return isLargeScreen
+        ? Container(
+            color: Colors.blue,
             width: MediaQuery.of(context).size.width * 0.04,
-            decoration: const BoxDecoration(border: Border(left: BorderSide(width: 5.0, color: Colors.black))),
-            child: selectedPaddingIcon(Icons.file_copy_outlined)),
-        paddingIcon(Icons.search_sharp),
-        paddingIcon(Icons.apps),
-        paddingIcon(Icons.tag_faces_outlined)
-      ]),
-    );
+            child: Column(children: [
+              Container(
+                  width: MediaQuery.of(context).size.width * 0.04,
+                  decoration: const BoxDecoration(border: Border(left: BorderSide(width: 5.0, color: Colors.black))),
+                  child: selectedPaddingIcon(Icons.file_copy_outlined)),
+              paddingIcon(Icons.search_sharp),
+              paddingIcon(Icons.apps),
+              paddingIcon(Icons.tag_faces_outlined)
+            ]),
+          )
+        : const SizedBox.shrink();
   }
 
   Padding paddingIcon(IconData icon) {
