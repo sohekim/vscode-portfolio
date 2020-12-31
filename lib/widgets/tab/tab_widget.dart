@@ -88,6 +88,7 @@ class TabWidget extends StatelessWidget {
           // TODO(Sohee): text icon tab
           ? iconTab(Icons.ac_unit, Colors.grey[350], Colors.grey)
           : Container(
+              height: 40,
               width: size.width > 1100 ? size.width * 0.15 : 160,
               color: Colors.grey[350],
               child: Padding(
