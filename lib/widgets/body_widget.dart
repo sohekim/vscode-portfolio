@@ -5,7 +5,10 @@ import 'package:portfolio/widgets/content/notfound_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../screen_provider.dart';
+import 'content/bridge_widget.dart';
 import 'content/intro_widget.dart';
+import 'content/moim_widget.dart';
+import 'content/notfound_widget.dart';
 import 'tab/tab_row_widget.dart';
 
 class BodyWidget extends StatefulWidget {
@@ -25,7 +28,7 @@ class _BodyWidgetState extends State<BodyWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.76,
+      width: calculateWidth(),
       child: Column(children: [TabRowWidget(), getContentWidget()]),
     );
   }
@@ -53,6 +56,17 @@ class _BodyWidgetState extends State<BodyWidget> {
           return NotFoundWidget();
         }
         break;
+    }
+  }
+
+  double calculateWidth() {
+    final double width = MediaQuery.of(context).size.width;
+    if (width > 1000) {
+      return width * 0.76;
+    } else if (width > 900) {
+      return width * 0.8;
+    } else {
+      return width;
     }
   }
 }
