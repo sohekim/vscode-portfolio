@@ -15,9 +15,8 @@ class TabWidget extends StatelessWidget {
     return isSelected ? selectedTab(context, screenProvider) : tab(context, screenProvider);
   }
 
-  Widget iconTab(double height, IconData iconData, Color bgColor, Color iconColor) {
+  Widget iconTab(IconData iconData, Color bgColor, Color iconColor) {
     return Container(
-      height: height,
       color: bgColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -33,9 +32,8 @@ class TabWidget extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     final bool isOverflow = screenProvider.openedTab.length * 160 > size.width;
     return isOverflow
-        ? iconTab(size.height, Icons.ac_unit, Colors.black, Colors.white)
+        ? iconTab(Icons.ac_unit, Colors.black, Colors.white)
         : Container(
-            height: size.height * 0.09,
             width: size.width > 1100 ? size.width * 0.15 : 160,
             color: Colors.grey[900],
             child: Padding(
@@ -87,9 +85,9 @@ class TabWidget extends StatelessWidget {
     return InkWell(
       onTap: () => {screenProvider.selectedTab = name},
       child: isOverflow
-          ? iconTab(size.height, Icons.ac_unit, Colors.grey[350], Colors.grey)
+          // TODO(Sohee): text icon tab
+          ? iconTab(Icons.ac_unit, Colors.grey[350], Colors.grey)
           : Container(
-              height: size.height * 0.09,
               width: size.width > 1100 ? size.width * 0.15 : 160,
               color: Colors.grey[350],
               child: Padding(

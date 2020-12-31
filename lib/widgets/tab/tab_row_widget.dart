@@ -22,7 +22,7 @@ class _TabRowWidgetState extends State<TabRowWidget> {
   @override
   Widget build(BuildContext context) {
     selectedTab = screenProvider.selectedTab;
-    return Container(color: Colors.indigo, height: MediaQuery.of(context).size.height * 0.05, child: getTabRow());
+    return Container(color: Colors.indigo, height: 40, child: getTabRow());
   }
 
   Row getTabRow() {
