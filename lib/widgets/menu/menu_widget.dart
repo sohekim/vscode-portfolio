@@ -15,7 +15,6 @@ class MenuWidget extends StatelessWidget {
                   decoration: const BoxDecoration(border: Border(left: BorderSide(width: 5.0, color: Colors.black))),
                   child: selectedPaddingIcon(Icons.file_copy_outlined)),
               paddingIcon(Icons.search_sharp),
-              paddingIcon(Icons.apps),
               paddingIcon(Icons.tag_faces_outlined)
             ]),
           )

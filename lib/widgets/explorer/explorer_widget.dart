@@ -72,7 +72,6 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
   }
 
   Widget tileItem(IconData iconData, String title) {
-    print(MediaQuery.of(context).size.width);
     final bool isOpened = title == screenProvider.selectedTab;
     return InkWell(
       onTap: () {
