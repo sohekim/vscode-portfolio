@@ -38,7 +38,7 @@ class _BodyWidgetState extends State<BodyWidget> {
           return MoimWidget();
         }
         break;
-      case 'main':
+      case 'main.dart':
         {
           return IntroWidget();
         }

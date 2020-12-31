@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MenuWidget extends StatelessWidget {
+  // TODO(Sohee): if more functionalities are needed, use tabBar and put it in a RotatedBox
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sohee Demo',
       home: MyHomePage(),
+      theme: ThemeData(accentColor: Colors.black),
     );
   }
 }
