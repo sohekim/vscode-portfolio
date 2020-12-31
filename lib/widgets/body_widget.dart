@@ -5,7 +5,10 @@ import 'package:portfolio/widgets/content/notfound_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../screen_provider.dart';
+import 'content/bridge_widget.dart';
 import 'content/intro_widget.dart';
+import 'content/moim_widget.dart';
+import 'content/notfound_widget.dart';
 import 'tab/tab_row_widget.dart';
 
 class BodyWidget extends StatefulWidget {
@@ -35,7 +38,7 @@ class _BodyWidgetState extends State<BodyWidget> {
     switch (selectedTab) {
       case 'moim.dart':
         {
-          return IntroWidget();
+          return MoimWidget();
         }
         break;
       case 'main.dart':
@@ -45,12 +48,12 @@ class _BodyWidgetState extends State<BodyWidget> {
         break;
       case 'bridge.kt':
         {
-          return IntroWidget();
+          return BridgeWidget();
         }
         break;
       default:
         {
-          return IntroWidget();
+          return NotFoundWidget();
         }
         break;
     }
