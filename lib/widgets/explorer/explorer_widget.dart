@@ -23,7 +23,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
 
     return isLargeScreen
         ? Container(
-            color: Colors.red,
+            color: Colors.grey[300],
             width: MediaQuery.of(context).size.width * 0.2,
             child: Column(children: [
               Padding(
