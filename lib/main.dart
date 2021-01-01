@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/screen.dart';
 import 'package:portfolio/screen_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sohee Demo',
       home: MyHomePage(),
-      theme: ThemeData(accentColor: Colors.black),
+      theme: ThemeData(
+        accentColor: Colors.black,
+        textTheme: TextTheme(
+          bodyText1: GoogleFonts.robotoMono(
+            fontSize: 15,
+          ),
+        ),
+      ),
     );
   }
 }
