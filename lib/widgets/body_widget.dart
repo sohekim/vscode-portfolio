@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/content/bridge_widget.dart';
+import 'package:portfolio/widgets/content/intro_widget.dart';
 import 'package:portfolio/widgets/content/moim_widget.dart';
 import 'package:portfolio/widgets/content/notfound_widget.dart';
+import 'package:portfolio/widgets/content/open_body.dart';
 import 'package:provider/provider.dart';
 
 import '../screen_provider.dart';
 import 'content/bridge_widget.dart';
-import 'content/intro_widget.dart';
 import 'content/moim_widget.dart';
 import 'content/notfound_widget.dart';
 import 'tab/tab_row_widget.dart';
@@ -36,19 +37,24 @@ class _BodyWidgetState extends State<BodyWidget> {
   Widget getContentWidget() {
     final String selectedTab = screenProvider.selectedTab;
     switch (selectedTab) {
+      case 'openBody.dart':
+        {
+          return OpenBodyWidget();
+        }
+        break;
       case 'moim.dart':
         {
           return MoimWidget();
         }
         break;
-      case 'main.dart':
-        {
-          return IntroWidget();
-        }
-        break;
       case 'bridge.kt':
         {
           return BridgeWidget();
+        }
+        break;
+      case 'main.dart':
+        {
+          return IntroWidget();
         }
         break;
       default:
