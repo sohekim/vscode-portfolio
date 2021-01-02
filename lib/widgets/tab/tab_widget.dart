@@ -34,8 +34,9 @@ class TabWidget extends StatelessWidget {
     return isOverflow
         ? iconTab(Icons.ac_unit, Colors.black, Colors.white)
         : Container(
+          height: 45,
             width: size.width > 1100 ? size.width * 0.15 : 160,
-            color: Colors.grey[900],
+            color: Colors.grey[100],
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
@@ -43,24 +44,24 @@ class TabWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Padding(
+                       Padding(
                         padding: EdgeInsets.only(right: 10.0),
                         // TODO(Sohee): show different icon by language
                         child: Icon(
                           Icons.ac_unit,
-                          color: Colors.white,
+                          color: Colors.grey[900],
                         ),
                       ),
                       Text(
                         name,
-                        style: const TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.grey[900]),
                       ),
                     ],
                   ),
                   IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.cancel_outlined,
-                        color: Colors.white,
+                        color: Colors.grey[900],
                       ),
                       onPressed: () => closeTab(context, screenProvider))
                 ],
@@ -86,11 +87,11 @@ class TabWidget extends StatelessWidget {
       onTap: () => {screenProvider.selectedTab = name},
       child: isOverflow
           // TODO(Sohee): text icon tab
-          ? iconTab(Icons.ac_unit, Colors.grey[350], Colors.grey)
+          ? iconTab(Icons.ac_unit, Colors.grey[100], Colors.grey)
           : Container(
-              height: 40,
+              height: 45,
               width: size.width > 1100 ? size.width * 0.15 : 160,
-              color: Colors.grey[350],
+              color: Colors.grey[300],
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
