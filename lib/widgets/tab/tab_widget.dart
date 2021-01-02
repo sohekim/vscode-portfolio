@@ -36,7 +36,7 @@ class TabWidget extends StatelessWidget {
         : Container(
           height: 45,
             width: size.width > 1100 ? size.width * 0.15 : 160,
-            color: Colors.grey[100],
+            color: Colors.grey[50],
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(

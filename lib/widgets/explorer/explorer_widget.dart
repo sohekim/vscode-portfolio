@@ -60,6 +60,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                         title: titleItem(Icons.folder_outlined, 'Projects'),
                         tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
                         childrenPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        initiallyExpanded: true,
                         children: <Widget>[tileItem(Icons.ac_unit, 'moim.dart'), tileItem(Icons.ac_unit, 'bridge.kt')]),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -84,14 +85,14 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
       child: Row(children: [
         Icon(
           iconData,
-          color: isOpened ? Colors.green : Colors.black,
+          color: isOpened ? Colors.black : Colors.grey,
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 10, 0, 10),
           child: Text(
             title,
             style: TextStyle(
-              color: isOpened ? Colors.green[900] : Colors.black,
+              color: isOpened ? Colors.black : Colors.grey,
               fontSize: 14,
             ),
           ),
