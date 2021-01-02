@@ -30,7 +30,7 @@ class _BodyWidgetState extends State<BodyWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: calculateWidth(),
-      child: Column(children: [TabRowWidget(), getContentWidget()]),
+      child: Column(children: [TabRowWidget(), Expanded(child: getContentWidget())]),
     );
   }
 

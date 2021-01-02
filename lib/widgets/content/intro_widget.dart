@@ -8,102 +8,190 @@ class IntroWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenProvider screenProvider = Provider.of<ScreenProvider>(context, listen: false);
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.only(left: 100),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+          // add constructor
+          Text(
+            '\nClass AboutSohee {\n',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 50.0),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                'looking for 2021 Internship = true\n',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              Text(
+                'myStatus = Full-Stack Intern at PurpleLabs',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              Text(
+                'myEducation = {Mount Holyoke College, Sophomore}\nmyMajor = Computer Science && Philosophy',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              Text(
+                '\nmySkills = {',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    'language : [Dart, Java, Kotlin, Python, HTML/CSS],',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  // change to framework
+                  Text(
+                    'SDK : [Flutter, Android Studio, Xcode],',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    'tools : [Github, Google Firebase/Crashlytics, AWS CloudWatch, Postman, Bitrise]',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ]),
+              ),
+              Text(
+                '}\n',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              getProjectRow(context, true, [
+                'Portfolio Website',
+                'Moim',
+                'BreastCancer Cancer Classification',
+              ]),
+              getProjectRow(context, false, ['Bridge', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify']),
+              Text(
+                '\nmyExperience = {',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  experienceRow(context, '\nPurpleLabs', 'Full-Stack Developer', 'Jul 5050 - Present'),
+                  experienceRow(context, '\nGoogle', 'J-Term Coding Bootcamp', 'Dec 5019 - Jan 5050'),
+                  experienceRow(
+                      context, '\nMount Holyoke College', 'Data Structure(CS 505) T.A', 'Jun 5019 - Jul 5050'),
+                  experienceRow(context, '\nDavidson College', 'Summer Coding Bootcamp', 'Jun 5019 - Jul 5050'),
+                  experienceRow(
+                      context, '\nMount Holyoke College', 'HackHolyoke Head of Logistics', 'Jun 5019 - Jul 5050'),
+                  experienceRow(
+                      context, '\nMount Holyoke College', 'CS Society Head Web Developer', 'Jun 5019 - Jul 5050'),
+                ]),
+              ),
+              Text(
+                '\n}',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+            ]),
+          ),
+          Text(
+            '}\n',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget experienceRow(BuildContext context, String title, String position, String date) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 350.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.bodyText1.copyWith(fontWeight: FontWeight.bold),
+            ),
+            Text(
+              position,
+              style: Theme.of(context).textTheme.bodyText1,
+            )
+          ]),
+          Text(
+            date,
+            style: Theme.of(context).textTheme.bodyText1,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget getProjectRow(BuildContext context, bool isFirst, List<String> _projects) {
+    List<Widget> _row = [];
+    if (isFirst) {
+      _row.add(Text(
+        'myProjects = [',
+        style: Theme.of(context).textTheme.bodyText1,
+      ));
+    }
+    for (final String project in _projects) {
+      _row.add(InkWell(
+        onTap: () {},
+        hoverColor: Colors.orange[300],
+        child: Text(
+          project,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+      ));
+      _row.add(Text(
+        ', ',
+        style: Theme.of(context).textTheme.bodyText1,
+      ));
+    }
+
+    if (!isFirst) {
+      _row[9] = (Text(
+        ']',
+        style: Theme.of(context).textTheme.bodyText1,
+      ));
+      return Padding(
+        padding: const EdgeInsets.only(left: 50.0),
+        child: Row(
+          children: _row,
+        ),
+      );
+    } else {
+      return Row(
+        children: _row,
+      );
+    }
+  }
+
+  Widget getProjectSecondRow(BuildContext context) {
+    List<Widget> _row = [];
+
+    List<String> _projects = ['Bridge', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify'];
+    for (String project in _projects) {
+      _row.add(InkWell(
+        onTap: () {},
+        hoverColor: Colors.orange,
+        child: Text(
+          project,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+      ));
+      _row.add(Text(
+        ', ',
+        style: Theme.of(context).textTheme.bodyText1,
+      ));
+    }
+
+    _row[9] = (Text(
+      ']',
+      style: Theme.of(context).textTheme.bodyText1,
+    ));
 
     return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[
-        // Text(
-        //   "//* Copyright 2021 Sohee Kim. All rights reserved.\nI'm Sohee Kim, a design-minded front-end software engineer \nfocused on building beautiful interfaces & experiences *//\n",
-        //   style: Theme.of(context).textTheme.bodyText1,
-        // ),
-        RichText(
-          text: TextSpan(
-            children: <TextSpan>[
-              TextSpan(text: 'public ', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-              TextSpan(text: 'class ', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-              TextSpan(
-                  text: 'IntroduceMyself ',
-                  style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.indigo)),
-              TextSpan(text: '{ ', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 50.0),
-          child: RichText(
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(
-                    text: '\nSoftwareEngineer ',
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: 'Sohee ', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: '= ', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.indigo)),
-                TextSpan(text: 'new ', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(
-                    text: 'SoftwareEngineer ',
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: '()', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: ';', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.black)),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 50.0),
-          child: RichText(
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: '\nSohee', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: '.', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(
-                    text: 'takingYearOffToWork',
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: '(', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: 'true', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: ')', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: ';', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.black)),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 50.0),
-          child: RichText(
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: '\nSohee', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: '.', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: 'education', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: '(', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(
-                    text: 'Mount Holyoke College',
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: ',', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(
-                    text: ' Sophomore', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.green)),
-                TextSpan(text: ')', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.brown)),
-                TextSpan(text: ';', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.black)),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 50.0),
-          child: RichText(
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: 'Sohee', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: '.', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: 'intern', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: '(', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: 'PurpleLabs', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue)),
-                TextSpan(text: ')', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.amber)),
-                TextSpan(text: ';', style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.black)),
-              ],
-            ),
-          ),
-        ),
-      ]),
+      padding: const EdgeInsets.only(left: 50.0),
+      child: Row(
+        children: _row,
+      ),
     );
   }
 
@@ -115,34 +203,3 @@ class IntroWidget extends StatelessWidget {
     }
   }
 }
-
-// class IntroduceMyself {
-
-//   SoftwareEngineer Sohee = SoftwareEnginner();
-
-//   // if needed, comment out -> write introduction
-
-//   Sohee.intern(PurpleLabs, Seoul);
-//   // currently taking a year off for my internship
-//   Sohee.student(MountHolyokeCollege, Sophomore, ComputerScience && Philosophy Major);
-//   Sohee.lookingForSummer2022InternShip(true);
-
-//   // skill Set
-//   // experience
-//   // portfolio
-//   // menu -- connect with LinkedIn
-
-//   Sohee.skillSet = {
-//     Dart : intermediate,
-//     Java : intermediate,
-//     Python :
-//   }
-
-//   Sohee.interested = {
-//     cleanArchitecture
-//   }
-
-// SkillSet
-// Projects
-
-// }
