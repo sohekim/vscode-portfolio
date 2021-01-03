@@ -7,7 +7,7 @@ class MenuWidget extends StatelessWidget {
     final bool isLargeScreen = MediaQuery.of(context).size.width > 1000;
     return isLargeScreen
         ? Container(
-            color: Colors.grey[100],
+            color: Colors.grey,
             width: MediaQuery.of(context).size.width * 0.04,
             child: Column(children: [
               Container(

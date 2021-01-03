@@ -61,10 +61,13 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                         tilePadding: const EdgeInsets.symmetric(horizontal: 20.0),
                         childrenPadding: const EdgeInsets.symmetric(horizontal: 30.0),
                         initiallyExpanded: true,
-                        children: <Widget>[tileItem(Icons.ac_unit, 'moim.dart'), tileItem(Icons.ac_unit, 'bridge.kt')]),
+                        children: <Widget>[
+                          tileItem(getIcon('moim.dart'), 'moim.dart'),
+                          tileItem(getIcon('bridge.java'), 'bridge.java')
+                        ]),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: tileItem(Icons.ac_unit, 'main.dart'),
+                      child: tileItem(getIcon('main.dart'), 'main.dart'),
                     ),
                   ]),
             ]),
@@ -72,7 +75,37 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
         : const SizedBox.shrink();
   }
 
-  Widget tileItem(IconData iconData, String title) {
+  Widget getIcon(String name) {
+    if (name.endsWith('dart')) {
+      return Image.asset(
+        'images/dart.png',
+        height: 20,
+        width: 20,
+        fit: BoxFit.contain,
+      );
+    } else if (name.endsWith('kt')) {
+      return Image.asset(
+        'images/kotlin.png',
+        height: 20,
+        width: 20,
+        fit: BoxFit.contain,
+      );
+    } else if (name.endsWith('java')) {
+      return Image.asset(
+        'images/java.png',
+        height: 20,
+        width: 20,
+        fit: BoxFit.contain,
+      );
+    } else {
+      return Icon(
+        Icons.ac_unit,
+        color: Colors.grey[900],
+      );
+    }
+  }
+
+  Widget tileItem(Image image, String title) {
     final bool isOpened = title == screenProvider.selectedTab;
     return InkWell(
       onTap: () {
@@ -83,10 +116,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
         }
       },
       child: Row(children: [
-        Icon(
-          iconData,
-          color: isOpened ? Colors.black : Colors.grey,
-        ),
+        image,
         Padding(
           padding: const EdgeInsets.fromLTRB(8, 10, 0, 10),
           child: Text(
