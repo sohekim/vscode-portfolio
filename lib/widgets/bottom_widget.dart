@@ -6,7 +6,7 @@ class BottomWidget extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     return Container(
         height: height * 0.04,
-        color: Colors.green,
+        color: Colors.grey[350],
         child: height > 430
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),

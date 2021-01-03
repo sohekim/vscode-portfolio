@@ -32,11 +32,11 @@ class TabWidget extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     final bool isOverflow = screenProvider.openedTab.length * 160 > size.width;
     return isOverflow
-        ? iconTab(Icons.ac_unit, Colors.black, Colors.white)
+        ? getIcon(name)
         : Container(
-          height: 45,
+            height: 45,
             width: size.width > 1100 ? size.width * 0.15 : 160,
-            color: Colors.grey[100],
+            color: Colors.grey[50],
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
@@ -44,14 +44,10 @@ class TabWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                       Padding(
-                        padding: EdgeInsets.only(right: 10.0),
-                        // TODO(Sohee): show different icon by language
-                        child: Icon(
-                          Icons.ac_unit,
-                          color: Colors.grey[900],
-                        ),
-                      ),
+                      Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          // TODO(Sohee): show different icon by language
+                          child: getIcon(name)),
                       Text(
                         name,
                         style: TextStyle(color: Colors.grey[900]),
@@ -59,15 +55,46 @@ class TabWidget extends StatelessWidget {
                     ],
                   ),
                   IconButton(
+                    padding: EdgeInsets.zero,
                       icon: Icon(
                         Icons.cancel_outlined,
-                        color: Colors.grey[900],
+                        color: Colors.grey[800],
                       ),
                       onPressed: () => closeTab(context, screenProvider))
                 ],
               ),
             ),
           );
+  }
+
+  Widget getIcon(String name) {
+    if (name.endsWith('dart')) {
+      return Image.asset(
+        'images/dart.png',
+        height: 25,
+        width: 25,
+        fit: BoxFit.contain,
+      );
+    } else if (name.endsWith('kt')) {
+      return Image.asset(
+        'images/kotlin.png',
+        height: 20,
+        width: 20,
+        fit: BoxFit.contain,
+      );
+    } else if (name.endsWith('java')) {
+      return Image.asset(
+        'images/java.png',
+        height: 25,
+        width: 25,
+        fit: BoxFit.contain,
+      );
+    } else {
+      return Icon(
+        Icons.ac_unit,
+        color: Colors.grey[900],
+      );
+    }
   }
 
   void closeTab(BuildContext context, ScreenProvider screenProvider) {
@@ -87,23 +114,20 @@ class TabWidget extends StatelessWidget {
       onTap: () => {screenProvider.selectedTab = name},
       child: isOverflow
           // TODO(Sohee): text icon tab
-          ? iconTab(Icons.ac_unit, Colors.grey[100], Colors.grey)
+          ? getIcon(name)
           : Container(
               height: 45,
               width: size.width > 1100 ? size.width * 0.15 : 160,
-              color: Colors.grey[300],
+              color: Colors.grey,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 8.0),
-                      child: Icon(
-                        Icons.ac_unit,
-                        color: Colors.grey,
-                      ),
+                     Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: getIcon(name),
                     ),
-                    Text(name, style: const TextStyle(color: Colors.grey))
+                    Text(name, style: TextStyle(color: Colors.grey[350]))
                   ],
                 ),
               ),

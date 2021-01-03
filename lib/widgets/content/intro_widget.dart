@@ -9,90 +9,143 @@ class IntroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScreenProvider screenProvider = Provider.of<ScreenProvider>(context, listen: false);
     return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.only(left: 100),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-          // add constructor
-          Text(
-            '\nClass AboutSohee {\n',
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 50.0),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                'looking for 2021 Internship = true\n',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              Text(
-                'myStatus = Full-Stack Intern at PurpleLabs',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              Text(
-                'myEducation = {Mount Holyoke College, Sophomore}\nmyMajor = Computer Science && Philosophy',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              Text(
-                '\nmySkills = {',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
+      
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.only(left: 100),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+              // add constructor
+              RichText(
+                  text: TextSpan(style: Theme.of(context).textTheme.bodyText1, children: [
+                TextSpan(
+                    text: '\nClass AboutSohee',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                // TextSpan(
+                //   text: ' AboutSohee',
+                //   style: Theme.of(context).textTheme.bodyText1,
+                // ),
+                TextSpan(
+                    text: ' {\n',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+              ])),
+
               Padding(
                 padding: const EdgeInsets.only(left: 50.0),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(
-                    'language : [Dart, Java, Kotlin, Python, HTML/CSS],',
-                    style: Theme.of(context).textTheme.bodyText1,
+                  RichText(
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyText1,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '\nlooking for 2021 Internship',
+                        ),
+                        TextSpan(
+                            text: ' = true\n',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text: '\nmyStatus = ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                        TextSpan(text: 'Full-Stack Intern at PurpleLabs'),
+                        TextSpan(
+                            text: '\nmyEducation = {',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                        TextSpan(text: ' Mount Holyoke College, Sophomore '),
+                        TextSpan(
+                            text: '}\nmyMajor = ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                        TextSpan(text: 'Computer Science && Philosophy'),
+                        TextSpan(
+                            text: '\n\n\nmySkills = {',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
                   ),
-                  // change to framework
-                  Text(
-                    'SDK : [Flutter, Android Studio, Xcode],',
-                    style: Theme.of(context).textTheme.bodyText1,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50.0),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(
+                        'language : [Dart, Java, Kotlin, Python, HTML/CSS],',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      // change to framework
+                      Text(
+                        'SDK : [Flutter, Android Studio, Xcode],',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      Text(
+                        'tools : [Github, Google Firebase/Crashlytics, AWS CloudWatch, Postman, Bitrise]',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ]),
                   ),
                   Text(
-                    'tools : [Github, Google Firebase/Crashlytics, AWS CloudWatch, Postman, Bitrise]',
-                    style: Theme.of(context).textTheme.bodyText1,
+                    '}\n\n',
+                    style:
+                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
+                  ),
+                  getProjectRow(screenProvider, context, true, [
+                    'Portfolio Website',
+                    'Moim',
+                    'BreastCancer Cancer Classification',
+                  ]),
+                  getProjectRow(screenProvider, context, false,
+                      ['Bridge', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify']),
+                  Text(
+                    '\n\nmyExperience = {',
+                    style:
+                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50.0),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      experienceRow(context, '\nPurpleLabs', 'Full-Stack Developer', 'Jul 5050 - Present'),
+                      experienceRow(context, '\nGoogle', 'J-Term Coding Bootcamp', 'Dec 5019 - Jan 5050'),
+                      experienceRow(
+                          context, '\nMount Holyoke College', 'Data Structure(CS 505) T.A', 'Jun 5019 - Jul 5050'),
+                      experienceRow(context, '\nDavidson College', 'Summer Coding Bootcamp', 'Jun 5019 - Jul 5050'),
+                      experienceRow(
+                          context, '\nMount Holyoke College', 'HackHolyoke Head of Logistics', 'Jun 5019 - Jul 5050'),
+                      experienceRow(
+                          context, '\nMount Holyoke College', 'CS Society Head Web Developer', 'Jun 5019 - Jul 5050'),
+                    ]),
+                  ),
+                  Text(
+                    '\n}',
+                    style:
+                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
                   ),
                 ]),
               ),
               Text(
                 '}\n',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              getProjectRow(context, true, [
-                'Portfolio Website',
-                'Moim',
-                'BreastCancer Cancer Classification',
-              ]),
-              getProjectRow(context, false, ['Bridge', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify']),
-              Text(
-                '\nmyExperience = {',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50.0),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  experienceRow(context, '\nPurpleLabs', 'Full-Stack Developer', 'Jul 5050 - Present'),
-                  experienceRow(context, '\nGoogle', 'J-Term Coding Bootcamp', 'Dec 5019 - Jan 5050'),
-                  experienceRow(
-                      context, '\nMount Holyoke College', 'Data Structure(CS 505) T.A', 'Jun 5019 - Jul 5050'),
-                  experienceRow(context, '\nDavidson College', 'Summer Coding Bootcamp', 'Jun 5019 - Jul 5050'),
-                  experienceRow(
-                      context, '\nMount Holyoke College', 'HackHolyoke Head of Logistics', 'Jun 5019 - Jul 5050'),
-                  experienceRow(
-                      context, '\nMount Holyoke College', 'CS Society Head Web Developer', 'Jun 5019 - Jul 5050'),
-                ]),
-              ),
-              Text(
-                '\n}',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
               ),
             ]),
           ),
-          Text(
-            '}\n',
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-        ]),
+        ),
       ),
     );
   }
@@ -110,7 +163,7 @@ class IntroWidget extends StatelessWidget {
             ),
             Text(
               position,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.grey[600]),
             )
           ]),
           Text(
@@ -122,18 +175,18 @@ class IntroWidget extends StatelessWidget {
     );
   }
 
-  Widget getProjectRow(BuildContext context, bool isFirst, List<String> _projects) {
+  Widget getProjectRow(ScreenProvider screenProvider, BuildContext context, bool isFirst, List<String> _projects) {
     List<Widget> _row = [];
     if (isFirst) {
-      _row.add(Text(
-        'myProjects = [',
-        style: Theme.of(context).textTheme.bodyText1,
-      ));
+      _row.add(Text('myProjects = [',
+          style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold)));
     }
     for (final String project in _projects) {
       _row.add(InkWell(
-        onTap: () {},
-        hoverColor: Colors.orange[300],
+        onTap: () {
+          updateTab(screenProvider, project);
+        },
+        hoverColor: Colors.orange[100],
         child: Text(
           project,
           style: Theme.of(context).textTheme.bodyText1,
@@ -148,51 +201,19 @@ class IntroWidget extends StatelessWidget {
     if (!isFirst) {
       _row[9] = (Text(
         ']',
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange),
       ));
       return Padding(
         padding: const EdgeInsets.only(left: 50.0),
-        child: Row(
+        child: Wrap(
           children: _row,
         ),
       );
     } else {
-      return Row(
+      return Wrap(
         children: _row,
       );
     }
-  }
-
-  Widget getProjectSecondRow(BuildContext context) {
-    List<Widget> _row = [];
-
-    List<String> _projects = ['Bridge', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify'];
-    for (String project in _projects) {
-      _row.add(InkWell(
-        onTap: () {},
-        hoverColor: Colors.orange,
-        child: Text(
-          project,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-      ));
-      _row.add(Text(
-        ', ',
-        style: Theme.of(context).textTheme.bodyText1,
-      ));
-    }
-
-    _row[9] = (Text(
-      ']',
-      style: Theme.of(context).textTheme.bodyText1,
-    ));
-
-    return Padding(
-      padding: const EdgeInsets.only(left: 50.0),
-      child: Row(
-        children: _row,
-      ),
-    );
   }
 
   void updateTab(ScreenProvider screenProvider, String tabName) {
