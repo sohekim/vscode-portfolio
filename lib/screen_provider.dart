@@ -5,7 +5,7 @@ class ScreenProvider with ChangeNotifier {
   String _selectedTab = 'openBody.dart';
   List<String> openedTab = [];
 
-  final Map<String, String> tabData = {'main': 'main.dart', 'tab 1': 'moim.dart', 'tab 2': 'bridge.kt', 'Bridge': 'bridge.kt'};
+  final Map<String, String> tabData = {'main': 'main.dart', 'bridge.java': 'bridge.java'};
 
   set selectedTab(String newTab) {
     _selectedTab = newTab;

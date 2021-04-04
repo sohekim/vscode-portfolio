@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sohee Demo',
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       theme: ThemeData(
         accentColor: Colors.black,

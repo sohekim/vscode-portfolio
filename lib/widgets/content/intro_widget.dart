@@ -9,7 +9,6 @@ class IntroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScreenProvider screenProvider = Provider.of<ScreenProvider>(context, listen: false);
     return SingleChildScrollView(
-      
       child: Align(
         alignment: Alignment.topLeft,
         child: Container(
@@ -24,7 +23,7 @@ class IntroWidget extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1
-                        .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                        .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
                 // TextSpan(
                 //   text: ' AboutSohee',
                 //   style: Theme.of(context).textTheme.bodyText1,
@@ -34,7 +33,7 @@ class IntroWidget extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1
-                        .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                        .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
               ])),
 
               Padding(
@@ -52,34 +51,34 @@ class IntroWidget extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
-                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                                .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
                         TextSpan(
                             text: '\nmyStatus = ',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
-                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                                .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
                         TextSpan(text: 'Full-Stack Intern at PurpleLabs'),
                         TextSpan(
                             text: '\nmyEducation = {',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
-                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                                .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
                         TextSpan(text: ' Mount Holyoke College, Sophomore '),
                         TextSpan(
                             text: '}\nmyMajor = ',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
-                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                                .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
                         TextSpan(text: 'Computer Science && Philosophy'),
                         TextSpan(
                             text: '\n\n\nmySkills = {',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1
-                                .copyWith(color: Colors.orange, fontWeight: FontWeight.bold)),
+                                .copyWith(color: Colors.blue, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -104,7 +103,7 @@ class IntroWidget extends StatelessWidget {
                   Text(
                     '}\n\n',
                     style:
-                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
+                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
                   getProjectRow(screenProvider, context, true, [
                     'Portfolio Website',
@@ -112,11 +111,11 @@ class IntroWidget extends StatelessWidget {
                     'BreastCancer Cancer Classification',
                   ]),
                   getProjectRow(screenProvider, context, false,
-                      ['Bridge', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify']),
+                      ['bridge.java', 'Not Again', 'CoolFunAmazingGame', 'Poop-Di-Scoop', 'Moodify']),
                   Text(
                     '\n\nmyExperience = {',
                     style:
-                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
+                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0),
@@ -135,13 +134,13 @@ class IntroWidget extends StatelessWidget {
                   Text(
                     '\n}',
                     style:
-                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
+                        Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
                 ]),
               ),
               Text(
                 '}\n',
-                style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
               ),
             ]),
           ),
@@ -179,14 +178,14 @@ class IntroWidget extends StatelessWidget {
     List<Widget> _row = [];
     if (isFirst) {
       _row.add(Text('myProjects = [',
-          style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange, fontWeight: FontWeight.bold)));
+          style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue, fontWeight: FontWeight.bold)));
     }
     for (final String project in _projects) {
       _row.add(InkWell(
         onTap: () {
           updateTab(screenProvider, project);
         },
-        hoverColor: Colors.orange[100],
+        hoverColor: Colors.blue[100],
         child: Text(
           project,
           style: Theme.of(context).textTheme.bodyText1,
@@ -201,7 +200,7 @@ class IntroWidget extends StatelessWidget {
     if (!isFirst) {
       _row[9] = (Text(
         ']',
-        style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.orange),
+        style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.blue),
       ));
       return Padding(
         padding: const EdgeInsets.only(left: 50.0),
@@ -217,8 +216,13 @@ class IntroWidget extends StatelessWidget {
   }
 
   void updateTab(ScreenProvider screenProvider, String tabName) {
-    screenProvider.selectedTab = screenProvider.tabData[tabName];
-    final _selectedTab = screenProvider.tabData[tabName];
+    String _selectedTab;
+    if (screenProvider.tabData.containsKey(tabName)) {
+      _selectedTab = screenProvider.tabData[tabName];
+    } else {
+      _selectedTab = '404.dart';
+    }
+    screenProvider.selectedTab = _selectedTab;
     if (!screenProvider.openedTab.contains(_selectedTab)) {
       screenProvider.openedTab.add(_selectedTab);
     }

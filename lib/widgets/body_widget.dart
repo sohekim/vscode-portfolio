@@ -47,7 +47,7 @@ class _BodyWidgetState extends State<BodyWidget> {
           return MoimWidget();
         }
         break;
-      case 'bridge.kt':
+      case 'bridge.java':
         {
           return BridgeWidget();
         }

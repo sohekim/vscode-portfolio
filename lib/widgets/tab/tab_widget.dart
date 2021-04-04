@@ -55,7 +55,7 @@ class TabWidget extends StatelessWidget {
                     ],
                   ),
                   IconButton(
-                    padding: EdgeInsets.zero,
+                      padding: EdgeInsets.zero,
                       icon: Icon(
                         Icons.cancel_outlined,
                         color: Colors.grey[800],
@@ -68,6 +68,12 @@ class TabWidget extends StatelessWidget {
   }
 
   Widget getIcon(String name) {
+    if (name == null) {
+      return Icon(
+        Icons.ac_unit,
+        color: Colors.grey[900],
+      );
+    }
     if (name.endsWith('dart')) {
       return Image.asset(
         'images/dart.png',
@@ -123,8 +129,8 @@ class TabWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
                   children: [
-                     Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
                       child: getIcon(name),
                     ),
                     Text(name, style: TextStyle(color: Colors.grey[350]))
